@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<title></title>
+	<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.9/angular.min.js"></script>
+	<link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">	
+	<link rel="stylesheet" type="text/css" href="style.css">
+</head>
+<body>
+<div class="container">
+	<div ng-app="todoList" ng-controller="listCtrl" class="angulartodoList">
+		<h2>Angular ToDoList</h2>
+		<div class="list-menu">
+			<div ng-class="{'active':selectedTab == 1}" ng-click=tabChange(1)>
+				<span class="material-icons">view_list</span>
+				<span class="menu-text">All Taks</span>
+			</div>
+			<div ng-class="{'active':selectedTab == 2}"ng-click=tabChange(2)>
+				<span class="material-icons" style="color:#fc4747;">incomplete_circle</span>
+				<span class="menu-text">To do</span>
+			</div>
+			<div ng-class="{'active':selectedTab == 3}" ng-click=tabChange(3)>
+				<span class="material-icons" style="color:#61ff69;">check_circle</span>
+				<span class="menu-text">Complete</span>
+			</div>
+		</div>
+		<ul>
+			<li ng-repeat="i in list" ng-switch="$even" ng-class-even="'even'" ng-class-odd="'odd'">
+				<div class="taskchecking" ng-switch-when="true" ng-class="{'linethrough':i.checked}">
+					<input type="checkbox" name="" ng-model="i.checked" ng-change="removeTask($index,i.checked)" ng-show="isShow" checked="i.checked" />
+					<span ng-show="showNumber">{{$index+1}}.</span> {{i.text}}
+				</div>
+				<div class="taskchecking" ng-switch-default ng-class="{'linethrough':i.checked}">
+					<input type="checkbox" name="" ng-model="i.checked" ng-change="removeTask($index,i.checked)" ng-show="isShow" checked="i.checked"/>
+					<span ng-show="showNumber">{{$index+1}}.</span> {{i.text}}
+				</div>
+				<div ng-click="deleteTask($index,i.checked)" ng-show="isShow">
+					<span class="material-icons">delete</span>
+					<span class="deleteText">Delete</span>
+				</div>
+			</li>			
+		</ul>
+		<div class="input-group" ng-show="isShow">
+			<input ng-model="addMe" required="" class="taskInput" placeholder="Add a task" ng-keyup="$event.keyCode == 13 && addTask()" autofocus="">
+			<button ng-click=addTask() class="addBtn">
+				<span class="material-icons">add_task</span><span class="btnText">ADD</span>
+			</button>
+		</div>
+		<div class="totalTasksComplete">Tasks :{{completeTask}}/{{totalTask}}</div>
+	</div>
+</div>
+<script type="text/javascript" src="angular.js"></script>
+</body>
+</html>
