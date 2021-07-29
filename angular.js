@@ -1,5 +1,4 @@
 var  app=angular.module("todoList",[]);
-
 	app.controller("listCtrl",function($scope){
 		$scope.list = [];
 		$scope.tempList=[];
@@ -47,7 +46,6 @@ var  app=angular.module("todoList",[]);
 		}
 		$scope.tabChange=function(tabNo){
 			$scope.selectedTab=tabNo;
-
 			switch(tabNo){
 				case 1:				
 					$scope.list = $scope.tempList;
@@ -60,7 +58,7 @@ var  app=angular.module("todoList",[]);
 		                $scope.showNumber=true;
 						angular.forEach($scope.tempList, function (value, key) {
 			                if(!value.checked){
-								$scope.list.push({text:value.text,checked:value.checked});
+						$scope.list.push({text:value.text,checked:value.checked});
 			                }else{
 			                	return false;
 			                }
@@ -72,7 +70,7 @@ var  app=angular.module("todoList",[]);
 					$scope.showNumber=true;
 						angular.forEach($scope.tempList, function (value, key) {
 			                if(value.checked){
-								$scope.list.push({text:value.text,checked:value.checked});
+						$scope.list.push({text:value.text,checked:value.checked});
 			                }else{
 			                	return false;
 			                }
