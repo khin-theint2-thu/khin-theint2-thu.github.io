@@ -13,7 +13,7 @@ var  app=angular.module("todoList",[]);
 				alert("Task is required.");
 				return;
 			}
-			else if($scope.list.indexOf($scope.addMe) == -1){
+			else if($scope.list.map(e => e.text).indexOf($scope.addMe) == -1){
 				$scope.list.push({text:$scope.addMe,checked:false});
 				$scope.addMe="";
 				$scope.totalTask += 1;
