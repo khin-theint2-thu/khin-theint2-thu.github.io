@@ -19,7 +19,7 @@ var  app=angular.module("todoList",[]);
 				$scope.totalTask += 1;
 
 			}else{
-				alert("The item is already in your shopping list.");
+				alert("The task is already in your todo list.");
 			}
 			
 			$scope.tempList=$scope.list;
